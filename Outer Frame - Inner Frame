@@ -1,0 +1,43 @@
+package org.frames;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Fame {
+	public static void main(String[] args) {
+		
+		WebDriver driver = new ChromeDriver();
+		
+		driver.manage().window().maximize();
+		
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		
+		driver.get("https://demo.guru99.com/test/guru99home/");
+		
+		//syntax
+		//driver.switchTo().frame(string id /name);
+		//driver.switchTo().frame("a077aa5e");
+		
+		//driver.switchTo().frame(WebElement e );
+		
+		WebElement d = driver.findElement(By.xpath("//iframe[@name='a077aa5e']"));
+		driver.switchTo().frame(d);
+		
+		//inner html
+		
+		driver.findElement(By.xpath("//img[@src='Jmeter720.png']")).click();
+		
+		//if you want to switch outer frame to inner frame
+		driver.switchTo().parentFrame();
+		
+		//if you want to switch from the one frame to main frame
+		driver.switchTo().defaultContent();
+		
+		
+	}
+
+}
